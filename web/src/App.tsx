@@ -246,7 +246,7 @@ function App() {
               <button>Cuenta</button>
             </li>
           )}
-          {nivel === 4 && (
+          {nivel >= 4 && (
             <li>
               <button>Subcuenta</button>
             </li>
