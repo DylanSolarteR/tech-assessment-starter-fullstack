@@ -1,0 +1,32 @@
+generator client {
+  provider     = "prisma-client"
+  output       = "../src/generated/prisma"
+  moduleFormat = "esm"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Cuenta {
+  id            Int      @id @default(autoincrement()) @map("Id")
+  codigo        Int      @unique @map("Codigo")
+  nombre        String   @map("Nombre") @db.VarChar(100)
+  naturalezaId  Int      @map("Naturaleza_id")
+  cuentaPadreId Int?     @map("Cuenta_padre_id")
+  active        Boolean  @default(true) @map("Active")
+  createdAt     DateTime @default(now()) @map("created_at") @db.Timestamp(3)
+
+  naturaleza   Naturaleza @relation(fields: [naturalezaId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  cuentaPadre  Cuenta?    @relation("JerarquiaCuentas", fields: [cuentaPadreId], references: [id], onDelete: Restrict, onUpdate: Cascade)
+  cuentasHijas Cuenta[]   @relation("JerarquiaCuentas")
+
+  @@index([naturalezaId])
+  @@index([cuentaPadreId])
+}
+
+model Naturaleza {
+  id      Int      @id @default(autoincrement()) @map("Id")
+  nombre  String   @map("Nombre") @db.VarChar(100)
+  cuentas Cuenta[]
+}

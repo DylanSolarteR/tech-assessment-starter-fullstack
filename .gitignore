@@ -4,6 +4,7 @@ node_modules
 # compilado
 dist
 *.tsbuildinfo
+/api/src/generated/prisma/
 
 # entorno
 .env
