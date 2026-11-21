@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "receiptId": "f9cdf26a-bcee-4732-8858-ff9f446c30d2",
+  "status": "current",
+  "command": "deliver",
+  "type": "erd",
+  "input": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.erd.json",
+  "output": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.html",
+  "specification": {
+    "sha256": "0a95dd9ca8c7f645bd0c78ea91c3bdd5728533299fa54558a986ac8f02fe8f0c",
+    "bytes": 3465
+  },
+  "artifact": {
+    "sha256": "3ae3be1e3544068249a580f5ed8e55460c52864e6bed9a939eefc820a7880e08",
+    "bytes": 842864
+  }
+}

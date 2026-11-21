@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "ok": false,
+  "command": "finalize",
+  "status": "fail",
+  "type": "erd",
+  "quality": "showcase",
+  "specification": {
+    "path": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.erd.json",
+    "sha256": "6c359801d4152dbffc4fd2136d0da13f24747f54be10b0e04191702f2462e6fb",
+    "bytes": 2541
+  },
+  "artifact": {
+    "path": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.html",
+    "sha256": "acd4a22a8c420f790a73c9a05a6dfc683b0c5f1ba728fc99aa01dbb0ba864053",
+    "bytes": 836062
+  },
+  "gates": {
+    "validate": "pass",
+    "deliver": "pass",
+    "check": "pass",
+    "browser-check": "fail"
+  },
+  "failedStage": "browser-check",
+  "diagnostics": [
+    {
+      "code": "viewer/browser-check-runtime",
+      "severity": "error",
+      "message": "browser-check could not complete its Chrome inspection.",
+      "subject": {
+        "artifact": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.html"
+      },
+      "evidence": {
+        "reason": "Temporary directory ancestor identity is unavailable: C:\\Users\\USUARIO\\AppData\\Local\\Temp"
+      },
+      "supportedFixes": [
+        "resolve the reported Chrome inspection error, then rerun browser-check"
+      ]
+    }
+  ],
+  "diagnosticSummary": {
+    "total": 1,
+    "shown": 1,
+    "truncated": false
+  },
+  "evidence": {
+    "receipt": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.finalize.json",
+    "summaryReceipt": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.finalize-summary.json",
+    "browserCheckReceipt": "C:\\Dev\\tech-assessment-starter-fullstack\\docs\\diagrams\\cuenta.browser-check.json"
+  },
+  "update": {
+    "status": "current",
+    "installedVersion": "3.2.0",
+    "availableVersion": "3.2.0",
+    "releaseNotes": null,
+    "checkedAt": "2026-11-21T14:34:21.251Z",
+    "source": "cache",
+    "noticeRequired": false,
+    "noticeText": null
+  },
+  "visualReview": "not-requested",
+  "durationMs": 1829,
+  "browserCheck": {
+    "requested": true,
+    "ran": false
+  }
+}
