@@ -13,6 +13,7 @@
     "postinstall": "npm install --prefix api && npm install --prefix web"
   },
   "devDependencies": {
-    "concurrently": "^9.2.1"
+    "concurrently": "^9.2.1",
+    "vitest": "^5.1.1"
   }
 }

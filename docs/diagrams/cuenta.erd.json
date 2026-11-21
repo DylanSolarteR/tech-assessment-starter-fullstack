@@ -1,0 +1,108 @@
+{
+  "schema_version": 1,
+  "diagram_type": "erd",
+  "meta": {
+    "title": "Cuenta y Naturaleza · Modelo entidad-relación",
+    "locale": "es",
+    "output": "docs/diagrams/cuenta.html",
+    "quality_profile": "showcase"
+  },
+  "layout": {
+    "mode": "grid",
+    "entityW": 420
+  },
+  "entities": [
+    {
+      "id": "cuenta",
+      "label": "Cuenta",
+      "tag": "Cuentas",
+      "row": 0,
+      "col": 0,
+      "attributes": [
+        { "name": "Id", "type": "INTEGER IDENTITY", "key": "pk" },
+        { "name": "Codigo", "type": "INTEGER", "key": "uk" },
+        { "name": "Nombre", "type": "VARCHAR(100)" },
+        {
+          "name": "Naturaleza_id",
+          "type": "INTEGER",
+          "key": "fk",
+          "references": "naturaleza.Id"
+        },
+        {
+          "name": "Cuenta_padre_id",
+          "type": "INTEGER NULL",
+          "key": "fk",
+          "references": "cuenta.Id"
+        },
+        { "name": "Active", "type": "BOOLEAN" },
+        { "name": "created_at", "type": "TIMESTAMP" }
+      ]
+    },
+    {
+      "id": "naturaleza",
+      "label": "Naturaleza",
+      "tag": "Cuentas",
+      "row": 0,
+      "col": 1,
+      "attributes": [
+        { "name": "Id", "type": "INTEGER IDENTITY", "key": "pk" },
+        { "name": "Nombre", "type": "VARCHAR(100)" }
+      ]
+    }
+  ],
+  "relationships": [
+    {
+      "id": "cuenta_naturaleza",
+      "from": "cuenta",
+      "to": "naturaleza",
+      "label": "tiene naturaleza",
+      "fromCardinality": "many",
+      "fromOptional": true,
+      "toCardinality": "one",
+      "toOptional": false,
+      "identifying": false
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Claves y restricciones",
+      "items": [
+        "Cuenta.Id y Naturaleza.Id: claves primarias enteras autoincrementales.",
+        "Codigo: entero único; Nombre: máximo 100 caracteres.",
+        "Cuenta.Naturaleza_id referencia Naturaleza.Id: cada cuenta tiene una naturaleza y una naturaleza puede clasificar cero o muchas cuentas.",
+        "Cuenta_padre_id referencia Cuenta.Id en la misma tabla."
+      ]
+    },
+    {
+      "dot": "emerald",
+      "title": "Jerarquía de cuentas",
+      "items": [
+        "Una cuenta tiene cero o una cuenta padre (0..1).",
+        "Una cuenta padre puede tener cero o muchas cuentas hijas (0..N).",
+        "Una cuenta raíz tiene Cuenta_padre_id = NULL.",
+        "La jerarquía es autorreferencial dentro de Cuenta. El bucle se muestra en cuenta.mmd; este visor lo documenta mediante la FK."
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "Supuestos por confirmar",
+      "items": [
+        "Naturaleza.Nombre: se propone VARCHAR(100). Los registros del catálogo quedan por definir.",
+        "Active: se propone BOOLEAN con valor inicial TRUE.",
+        "created_at: se propone TIMESTAMP con valor inicial CURRENT_TIMESTAMP; zona horaria por definir.",
+        "Se proponen campos obligatorios, salvo Cuenta_padre_id. No se ha elegido un motor SQL."
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Integridad propuesta",
+      "items": [
+        "Evitar que una cuenta sea su propio padre o forme ciclos con sus descendientes.",
+        "Impedir eliminar una cuenta padre mientras tenga hijas.",
+        "Impedir eliminar una naturaleza mientras existan cuentas que la referencien.",
+        "Estas reglas son propuestas de diseño; el diagrama no crea tablas ni aplica restricciones en una base de datos."
+      ]
+    }
+  ]
+}
