@@ -1,0 +1,24 @@
+erDiagram
+    direction LR
+    Cuenta {
+        INTEGER Id PK "Autoincremental; NOT NULL"
+        INTEGER Codigo UK "Único; NOT NULL propuesto"
+        VARCHAR(100) Nombre "NOT NULL propuesto"
+        INTEGER Naturaleza_id FK "Referencia Naturaleza.Id; NOT NULL propuesto"
+        INTEGER Cuenta_padre_id FK "NULL permitido; referencia Cuenta.Id"
+        BOOLEAN Active "Propuesto: NOT NULL DEFAULT TRUE"
+        TIMESTAMP created_at "Propuesto: NOT NULL DEFAULT CURRENT_TIMESTAMP"
+    }
+
+    Naturaleza {
+        INTEGER Id PK "Autoincremental; NOT NULL"
+        VARCHAR(100) Nombre "Longitud y NOT NULL propuestos"
+    }
+
+    Naturaleza ||--o{ Cuenta : "clasifica"
+    Cuenta |o--o{ Cuenta : "es padre de"
+
+%% Jerarquía en Cuenta: cada hija tiene 0..1 padre y cada padre tiene 0..N hijas.
+%% Cada cuenta tiene una naturaleza; una naturaleza puede tener 0..N cuentas.
+%% La zona horaria y los registros de Naturaleza están pendientes de definición.
+%% Integridad propuesta: impedir ciclos y restringir eliminación de padres con hijas.
